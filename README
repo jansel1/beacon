@@ -1,0 +1,5 @@
+Code not polished
+Will make better soon
+
+# Whats this
+A "Virtual Machine" that simulates old computers. The hard drive, being a file, has a default size of 4kb (4096 bytes), and every file you make, will take up space. So the hard drive is just, a file, in your REAL pc. Many bugs, still in work. 

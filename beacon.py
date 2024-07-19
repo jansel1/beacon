@@ -8,15 +8,20 @@ try:
     os.chdir("./beacon.rootenv/user")
 except:
     print("COULD NOT FIND ROOTENVIROMENT (BEACON.ROOTENV).")
-    input("Type enter to exit...")
+    input("TYPE ENTER TO EXIT...")
 
     quit()
 
 def shdd():
-    while True:
-        try:
+    try:
+        while True:
+            print("PRESS CTRL+C TO EXIT - YOU WILL GO BACK TO BEACON HOME.")
             print(f"CURRENT DRIVE: HARD_DRIVE_1.SYSM (System Memory File)")
-        except KeyboardInterrupt: break
+
+            time.sleep(.7)
+            os.system("cls")
+
+    except KeyboardInterrupt: return
 
 os.system("cls")
 keyboard.press("f11")
@@ -150,7 +155,7 @@ def makefile(name, text):
         f = file.name
 
     if (check_memory() == -1): 
-        print(f"NO MEMORY AVAILABLE TO ALLOCATE {len(text)} BYTES! Please free up some space.")
+        print(f"NO MEMORY AVAILABLE TO ALLOCATE {len(text)} BYTES! PLEASE FREE SOME SPACE.")
 
         os.remove(f)
         return
@@ -168,7 +173,7 @@ def main():
 
         
         def _getmem(): 
-            print(f"Total amount of bytes allocated this session [{bufferspace}b]")
+            print(f"TOTAL AMOUNT OF BYTES ALLOCATED THIS SESSION (BUFFER SPACE) [{bufferspace}b]")
             return True
 
         def _tasks():
@@ -203,7 +208,7 @@ def main():
 
             if cm == 0: cm = 1
 
-            print(f"\nDefault memory size: {m} bytes, {m / 1024}kb\nMemory in use: {cm} bytes, {cm / 1024}kb\nTotal free: {m-cm} bytes, {m/1024 - cm/1024}kb\n")
+            print(f"\nDEF. MEMORY SIZE: {m} BYTES, {m / 1024}KB\nIN USE: {cm} BYTES, {cm / 1024}KB\nFREE: {m-cm} BYTES, {m/1024 - cm/1024}KB\n")
             
             for root, dirs, files in os.walk(os.getcwd()):
                 if (len(files) == 0):
@@ -214,9 +219,9 @@ def main():
                     title = f".{str(file.split('.')[len(file.split('.'))-1]).upper()} File"
                     size = os.path.getsize(os.path.join(root, file))
 
-                    if file.endswith(".text"): title = "Document file"
-                    elif file.endswith(".todo"): title = "Todo-list file"
-                    elif file.endswith(".log"): title = "System output file"
+                    if file.endswith(".text"): title = "DOCUMENT FILE"
+                    elif file.endswith(".todo"): title = "TODO FILE"
+                    elif file.endswith(".log"): title = "SYSTEM OUTPUT FILE"
 
                     print(f"{file:<30} {title:<30} {size} bytes, {size/1024} kb")
 
@@ -224,27 +229,27 @@ def main():
 
         def _clear():
             amt = 0
-            yn = input("Do you want to clear the home directory? Y/N > ")
+            yn = input("ARE YOU SURE YOU WANT TO CLEAR HOME Y/N > ")
 
             if (yn.lower() == "y"):
                 for root, dirs, files in os.walk(os.getcwd()):
                     for file in files:
                         os.remove(os.path.join(root, file))
                         amt += 1
-                print(f"Cleared {amt} file(s)")
+                print(f"CLEARED {amt} FILE(s)")
 
         def _view():
             try: 
                 input_buffer[1]
             except: 
-                print("Required argument: <file_location> at (InputBuffer), Argument 1")
+                print("REQUIRED ARGUMENTS: <file_location> AT (InputBuffer), Argument 1")
                 return
 
             try:
                 with open(f"./{input_buffer[1]}", "r") as f:
                     for line in f.readlines():
                         print(line)
-            except: print(f"Could not find file [{input_buffer[1]}]")
+            except: print(f"COULD NOT LOCATE FILE [{input_buffer[1]}]")
 
         commands = [
             ["memory", _getmem],
